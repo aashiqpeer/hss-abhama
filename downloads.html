@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PM SHRI GHSS Abhama - Download Center | Prospectus, Forms & Study Material</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #1a2c3e;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #0b2b3b;
+            color: white;
+            padding: 10px 0;
+            font-size: 0.85rem;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .contact-info span {
+            margin-right: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-links a {
+            color: white;
+            margin-left: 18px;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffcd7e;
+        }
+
+        /* Header */
+        .main-header {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 15px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #1e6f5c;
+            background: #e8f5f0;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #0b4f6c;
+        }
+
+        .logo-text p {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2c7a4d;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e3a5f;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #d98c2b;
+            border-bottom: 3px solid #d98c2b;
+            padding-bottom: 4px;
+        }
+
+        .btn-admission {
+            background: linear-gradient(95deg, #1a6d58, #23967c);
+            color: white !important;
+            padding: 8px 20px !important;
+            border-radius: 40px;
+            border-bottom: none !important;
+        }
+
+        .menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1e5a7a;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #0f2c3d 0%, #1b5a7a 100%);
+            padding: 50px 0;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #e0e9f0;
+            position: sticky;
+            top: 80px;
+            z-index: 99;
+        }
+
+        .tabs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 10px 24px;
+            border: 2px solid #e0e9f0;
+            background: white;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: #d97706;
+            color: white;
+            border-color: #d97706;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: #f8fafc;
+            padding: 20px 0;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            border: 2px solid #e0e9f0;
+            border-radius: 50px;
+            font-size: 1rem;
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        /* Downloads Grid */
+        .downloads-section {
+            padding: 50px 0;
+        }
+
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #d97706;
+            display: inline-block;
+        }
+
+        .downloads-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .download-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            border: 1px solid #e0e9f0;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-icon {
+            font-size: 2.5rem;
+            color: #d97706;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1e3a5f;
+            margin-bottom: 5px;
+        }
+
+        .file-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.75rem;
+            color: #999;
+            margin-bottom: 12px;
+        }
+
+        .download-btn {
+            background: #1e6f5c;
+            color: white;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background: #0e5948;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #0e2a36;
+            color: #cddfe6;
+            padding: 50px 0 25px;
+            margin-top: 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            color: #bcd0da;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+
+        .footer-col a:hover {
+            color: #ffcd7e;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #235f6e;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        @media (max-width: 900px) {
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background: white;
+                padding: 20px 0;
+            }
+
+            .nav-menu.show {
+                display: flex;
+            }
+
+            .menu-icon {
+                display: block;
+            }
+
+            .downloads-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +91-8899928503</span>
+                <span><i class="fas fa-envelope"></i> pmshri.abhama@jk.gov.in</span>
+                <span><i class="fas fa-map-marker-alt"></i> Abhama, Pulwama, J&K - 192301</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-school"></i></div>
+                <div class="logo-text">
+                    <h1>PM SHRI GHSS ABHAMA</h1>
+                    <p>Govt. Higher Secondary School | Excellence in Education</p>
+                </div>
+            </div>
+            <div class="menu-icon" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#academics">Academics</a>
+                <a href="admission.html">Admissions</a>
+                <a href="teachers.html">Teachers</a>
+                <a href="#" class="active">Downloads</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="admission.html" class="btn-admission"><i class="fas fa-user-graduate"></i> Apply Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-download"></i> Download Center</h1>
+            <p>Access prospectus, admission forms, study material, and other important documents</p>
+        </div>
+    </section>
+
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-category="all"><i class="fas fa-th-large"></i> All
+                    Resources</button>
+                <button class="tab-btn" data-category="prospectus"><i class="fas fa-book"></i> Prospectus</button>
+                <button class="tab-btn" data-category="forms"><i class="fas fa-file-alt"></i> Admission Forms</button>
+                <button class="tab-btn" data-category="study"><i class="fas fa-graduation-cap"></i> Study
+                    Material</button>
+                <button class="tab-btn" data-category="notices"><i class="fas fa-bullhorn"></i> Notices</button>
+                <button class="tab-btn" data-category="results"><i class="fas fa-chart-line"></i> Results</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="container">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search documents by name...">
+            </div>
+        </div>
+    </div>
+
+    <!-- Downloads Section -->
+    <div class="downloads-section">
+        <div class="container" id="downloadsContainer"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4><i class="fas fa-school"></i> PM SHRI GHSS Abhama</h4>
+                <p>Government Higher Secondary School</p>
+                <p>Abhama, Pulwama, J&K - 192301</p>
+                <p>📞 +91-8899928503</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="admission.html">📝 Admission 2025-26</a>
+                <a href="#">📅 Academic Calendar</a>
+                <a href="#">📋 Mandatory Disclosures</a>
+                <a href="#">💰 Online Fee Portal</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="downloads.html">📥 Download Center</a>
+                <a href="#">📖 Digital Library</a>
+                <a href="#">🎯 NEP 2020 Implementation</a>
+                <a href="#">🏆 PM SHRI Guidelines</a>
+            </div>
+            <div class="footer-col">
+                <h4>Important Links</h4>
+                <a href="#">JKBOSE</a>
+                <a href="#">DSEK</a>
+                <a href="#">Samagra Shiksha</a>
+                <a href="#">PM SHRI Dashboard</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2025 PM SHRI Govt. Higher Secondary School Abhama | Empowering Rural Education</p>
+        </div>
+    </footer>
+
+    <script>
+        // Download Items Database
+        const downloads = [
+            // Prospectus
+            { id: 1, title: "School Prospectus 2025-26", description: "Complete information about courses, fees, facilities, and school policies.", category: "prospectus", fileType: "pdf", fileSize: "2.5 MB", fileName: "prospectus_2025_26.pdf", icon: "fa-file-pdf" },
+            { id: 2, title: "PM SHRI Scheme Overview", description: "Details of PM SHRI components, benefits, and implementation guidelines.", category: "prospectus", fileType: "pdf", fileSize: "1.8 MB", fileName: "pm_shri_overview.pdf", icon: "fa-file-pdf" },
+
+            // Forms
+            { id: 3, title: "Admission Form 2025-26", description: "Online admission form for classes 6th to 12th. Print and submit to school office.", category: "forms", fileType: "pdf", fileSize: "0.9 MB", fileName: "admission_form_2025.pdf", icon: "fa-file-alt" },
+            { id: 4, title: "Scholarship Application Form", description: "Apply for merit-cum-means scholarship. Last date: 30th April 2025.", category: "forms", fileType: "pdf", fileSize: "0.6 MB", fileName: "scholarship_form.pdf", icon: "fa-file-alt" },
+            { id: 5, title: "Transfer Certificate Application", description: "Form for requesting transfer certificate from school.", category: "forms", fileType: "pdf", fileSize: "0.4 MB", fileName: "tc_application.pdf", icon: "fa-file-alt" },
+            { id: 6, title: "Fee Concession Form", description: "Apply for fee concession based on economic background.", category: "forms", fileType: "pdf", fileSize: "0.5 MB", fileName: "fee_concession.pdf", icon: "fa-file-alt" },
+            { id: 7, title: "Hostel Application Form", description: "Application for school hostel accommodation (limited seats).", category: "forms", fileType: "pdf", fileSize: "0.5 MB", fileName: "hostel_form.pdf", icon: "fa-file-alt" },
+
+            // Study Material
+            { id: 8, title: "Class 10th Sample Papers 2025", description: "Sample question papers for all subjects - JKBOSE pattern.", category: "study", fileType: "pdf", fileSize: "3.2 MB", fileName: "class10_sample_papers.pdf", icon: "fa-file-pdf" },
+            { id: 9, title: "Class 12th Physics Notes", description: "Complete chapter-wise notes for Physics (Science stream).", category: "study", fileType: "pdf", fileSize: "4.5 MB", fileName: "physics_notes_class12.pdf", icon: "fa-file-pdf" },
+            { id: 10, title: "Class 12th Chemistry Notes", description: "Detailed chemistry notes with solved examples.", category: "study", fileType: "pdf", fileSize: "3.8 MB", fileName: "chemistry_notes.pdf", icon: "fa-file-pdf" },
+            { id: 11, title: "Class 12th Mathematics Guide", description: "Important formulas and solved problems for board exams.", category: "study", fileType: "pdf", fileSize: "5.2 MB", fileName: "maths_guide.pdf", icon: "fa-file-pdf" },
+            { id: 12, title: "Class 9th Science Worksheets", description: "Practice worksheets for all science subjects.", category: "study", fileType: "pdf", fileSize: "2.1 MB", fileName: "class9_worksheets.pdf", icon: "fa-file-pdf" },
+            { id: 13, title: "English Grammar Handbook", description: "Complete English grammar rules and exercises for classes 9-12.", category: "study", fileType: "pdf", fileSize: "3.5 MB", fileName: "english_grammar.pdf", icon: "fa-file-pdf" },
+            { id: 14, title: "IT & ITES Training Material", description: "Vocational course material for IT/ITES students.", category: "study", fileType: "pdf", fileSize: "6.1 MB", fileName: "ites_training.pdf", icon: "fa-file-pdf" },
+
+            // Notices
+            { id: 15, title: "Parent-Teacher Meeting Notice", description: "Notice for upcoming PTM on 20th April 2025.", category: "notices", fileType: "pdf", fileSize: "0.3 MB", fileName: "ptm_notice.pdf", icon: "fa-file-alt" },
+            { id: 16, title: "Holiday List 2025", description: "List of academic holidays and vacations for 2025.", category: "notices", fileType: "pdf", fileSize: "0.4 MB", fileName: "holiday_list_2025.pdf", icon: "fa-file-alt" },
+            { id: 17, title: "Exam Schedule - Annual Exams 2025", description: "Detailed timetable for annual examinations.", category: "notices", fileType: "pdf", fileSize: "0.5 MB", fileName: "exam_schedule.pdf", icon: "fa-file-alt" },
+            { id: 18, title: "School Re-opening Notice", description: "School re-opening date after summer break.", category: "notices", fileType: "pdf", fileSize: "0.2 MB", fileName: "reopening_notice.pdf", icon: "fa-file-alt" },
+
+            // Results
+            { id: 19, title: "Class 10th Results 2024", description: "Annual examination results for class 10th (2024 session).", category: "results", fileType: "pdf", fileSize: "1.2 MB", fileName: "class10_results_2024.pdf", icon: "fa-chart-line" },
+            { id: 20, title: "Class 12th Results 2024", description: "Board examination results for class 12th (2024 session).", category: "results", fileType: "pdf", fileSize: "1.4 MB", fileName: "class12_results_2024.pdf", icon: "fa-chart-line" },
+            { id: 21, title: "Merit List 2024-25", description: "List of top performers in annual examinations.", category: "results", fileType: "pdf", fileSize: "0.6 MB", fileName: "merit_list.pdf", icon: "fa-trophy" }
+        ];
+
+        let currentCategory = "all";
+        let currentSearch = "";
+
+        function getFileIcon(fileType) {
+            const icons = {
+                pdf: "fa-file-pdf",
+                doc: "fa-file-word",
+                xls: "fa-file-excel",
+                ppt: "fa-file-powerpoint",
+                zip: "fa-file-archive",
+                default: "fa-file"
+            };
+            return icons[fileType] || icons.default;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + " B";
+            if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
+            return (bytes / 1048576).toFixed(1) + " MB";
+        }
+
+        function renderDownloads() {
+            let filtered = downloads.filter(item => {
+                if (currentCategory !== "all" && item.category !== currentCategory) return false;
+                if (currentSearch) {
+                    const searchLower = currentSearch.toLowerCase();
+                    return item.title.toLowerCase().includes(searchLower) ||
+                        item.description.toLowerCase().includes(searchLower);
+                }
+                return true;
+            });
+
+            const container = document.getElementById('downloadsContainer');
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 3rem; opacity: 0.3;"></i><p>No documents found matching your search.</p></div>';
+                return;
+            }
+
+            // Group by category
+            const grouped = {};
+            filtered.forEach(item => {
+                if (!grouped[item.category]) grouped[item.category] = [];
+                grouped[item.category].push(item);
+            });
+
+            const categoryNames = {
+                prospectus: "📘 School Prospectus & Information",
+                forms: "📝 Admission & Application Forms",
+                study: "📚 Study Material & Notes",
+                notices: "📢 Official Notices & Announcements",
+                results: "📊 Examination Results & Merit Lists"
+            };
+
+            let html = '';
+            for (const [cat, items] of Object.entries(grouped)) {
+                html += `
+                    <div class="category-section">
+                        <h2 class="category-title">${categoryNames[cat] || cat}</h2>
+                        <div class="downloads-grid">
+                `;
+                items.forEach(item => {
+                    const iconClass = getFileIcon(item.fileType);
+                    html += `
+                        <div class="download-card" data-category="${item.category}">
+                            <div class="file-icon">
+                                <i class="fas ${iconClass}"></i>
+                            </div>
+                            <div class="file-info">
+                                <h3 class="file-title">${item.title}</h3>
+                                <p class="file-description">${item.description}</p>
+                                <div class="file-meta">
+                                    <span><i class="fas fa-file"></i> ${item.fileType.toUpperCase()}</span>
+                                    <span><i class="fas fa-database"></i> ${item.fileSize}</span>
+                                </div>
+                                <button class="download-btn" onclick="downloadFile('${item.fileName}', '${item.title}')">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                html += `</div></div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        function downloadFile(fileName, title) {
+            // Simulate download - in real scenario, this would point to actual file path
+            // For demo, we create a text file with info
+            const content = `This is a sample download for: ${title}\n\nIn a real implementation, this would be the actual ${fileName} file.\n\nPM SHRI GHSS Abhama - Official Document`;
+            const blob = new Blob([content], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show notification
+            alert(`Download started: ${title}\n\nFile will be saved as ${fileName}`);
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentCategory = btn.getAttribute('data-category');
+                renderDownloads();
+            });
+        });
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderDownloads();
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+        menuToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+        // Initial render
+        renderDownloads();
+    </script>
+</body>
+
+</html>
