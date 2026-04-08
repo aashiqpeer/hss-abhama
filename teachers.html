@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>PM SHRI GHSS Abhama - Teacher Directory | Faculty & Staff</title>
+    <title>PM SHRI GHSS Abhama - Staff Directory | Faculty & Non-Teaching Staff</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -245,15 +245,54 @@
             font-size: 1.2rem;
         }
 
-        /* Teacher Grid */
-        .teacher-grid {
+        /* Section Tabs */
+        .section-tabs {
+            background: white;
+            padding: 15px 0;
+            border-bottom: 2px solid #e0e9f0;
+        }
+
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            border-radius: 40px;
+            transition: 0.3s;
+            color: #1e3a5f;
+        }
+
+        .tab-btn i {
+            margin-right: 8px;
+        }
+
+        .tab-btn.active {
+            background: #d97706;
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background: #eef2fa;
+        }
+
+        /* Staff Grid - Reused for both sections */
+        .staff-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 30px;
             padding: 50px 0;
         }
 
-        .teacher-card {
+        .staff-card {
             background: white;
             border-radius: 1.5rem;
             overflow: hidden;
@@ -262,48 +301,50 @@
             cursor: pointer;
         }
 
-        .teacher-card:hover {
+        .staff-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .teacher-img {
+        .staff-img {
             height: 220px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            overflow: hidden;
         }
 
-        .teacher-img i {
+        .staff-img i {
             font-size: 5rem;
             color: rgba(255, 255, 255, 0.9);
         }
 
-        .teacher-img .subject-badge {
+        .staff-img .role-badge {
             position: absolute;
             bottom: 15px;
             right: 15px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
+            font-weight: 600;
         }
 
-        .teacher-info {
+        .staff-info {
             padding: 20px;
         }
 
-        .teacher-name {
+        .staff-name {
             font-size: 1.3rem;
             font-weight: 700;
             color: #1e3a5f;
             margin-bottom: 5px;
         }
 
-        .teacher-dept {
+        .staff-role {
             color: #d97706;
             font-weight: 600;
             font-size: 0.85rem;
@@ -314,35 +355,26 @@
             border-radius: 20px;
         }
 
-        .teacher-qualification {
-            color: #666;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .teacher-details {
+        .staff-details {
             margin-top: 12px;
             padding-top: 12px;
             border-top: 1px solid #eee;
         }
 
-        .teacher-details p {
-            font-size: 0.8rem;
-            margin: 5px 0;
+        .staff-details p {
+            font-size: 0.85rem;
+            margin: 8px 0;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .teacher-details i {
+        .staff-details i {
             color: #1e6f5c;
             width: 20px;
         }
 
-        /* Modal for Teacher Details */
+        /* Modal for Details */
         .modal {
             display: none;
             position: fixed;
@@ -370,7 +402,6 @@
                 transform: translateY(-50px);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -417,6 +448,15 @@
         .modal-value {
             flex: 1;
             color: #555;
+        }
+
+        /* Hide/Show Sections */
+        .staff-section {
+            display: none;
+        }
+
+        .staff-section.active-section {
+            display: block;
         }
 
         /* Footer */
@@ -530,7 +570,7 @@
                 <a href="index.html#about">About</a>
                 <a href="index.html#academics">Academics</a>
                 <a href="admission.html">Admissions</a>
-                <a href="#" class="active">Teachers</a>
+                <a href="#" class="active">Staff</a>
                 <a href="index.html#gallery">Gallery</a>
                 <a href="index.html#contact">Contact</a>
                 <a href="admission.html" class="btn-admission"><i class="fas fa-user-graduate"></i> Apply Now</a>
@@ -541,10 +581,24 @@
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1><i class="fas fa-chalkboard-teacher"></i> Our Dedicated Faculty</h1>
-            <p>Meet the experienced educators who shape young minds at PM SHRI GHSS Abhama</p>
+            <h1><i class="fas fa-users"></i> Our Staff Directory</h1>
+            <p>Meet our dedicated teaching faculty and supportive non-teaching staff</p>
         </div>
     </section>
+
+    <!-- Section Tabs -->
+    <div class="section-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="teaching">
+                    <i class="fas fa-chalkboard-teacher"></i> Teaching Faculty
+                </button>
+                <button class="tab-btn" data-tab="nonteaching">
+                    <i class="fas fa-toolbox"></i> Non-Teaching Staff
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Search & Filter -->
     <section class="search-section">
@@ -552,15 +606,17 @@
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search by name, subject, or qualification...">
+                    <input type="text" id="searchInput" placeholder="Search by name, role, or department...">
                 </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">All Teachers</button>
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">All</button>
                     <button class="filter-btn" data-filter="Science">Science</button>
                     <button class="filter-btn" data-filter="Mathematics">Mathematics</button>
                     <button class="filter-btn" data-filter="Arts">Arts</button>
                     <button class="filter-btn" data-filter="Languages">Languages</button>
                     <button class="filter-btn" data-filter="Vocational">Vocational</button>
+                    <button class="filter-btn" data-filter="Administration">Administration</button>
+                    <button class="filter-btn" data-filter="Support Staff">Support Staff</button>
                 </div>
             </div>
         </div>
@@ -569,20 +625,29 @@
     <!-- Stats -->
     <div class="stats-bar">
         <div class="container">
-            <span id="teacherCount">0</span> Dedicated Teachers & Staff
+            <span id="teacherCount">0</span> Staff Members
         </div>
     </div>
 
-    <!-- Teacher Grid -->
-    <div class="container">
-        <div class="teacher-grid" id="teacherGrid"></div>
+    <!-- Teaching Faculty Section -->
+    <div id="teachingSection" class="staff-section active-section">
+        <div class="container">
+            <div class="staff-grid" id="teachingGrid"></div>
+        </div>
     </div>
 
-    <!-- Teacher Detail Modal -->
-    <div id="teacherModal" class="modal">
+    <!-- Non-Teaching Staff Section -->
+    <div id="nonteachingSection" class="staff-section">
+        <div class="container">
+            <div class="staff-grid" id="nonteachingGrid"></div>
+        </div>
+    </div>
+
+    <!-- Staff Detail Modal -->
+    <div id="staffModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-user-tie"></i> Teacher Details</h3>
+                <h3><i class="fas fa-user-circle"></i> Staff Details</h3>
                 <button class="close-modal" onclick="closeModal()">&times;</button>
             </div>
             <div class="modal-body" id="modalBody"></div>
@@ -625,150 +690,199 @@
     </footer>
 
     <script>
-        // Teacher Data
-        const teachers = [
-            { id: 1, name: "Dr. Mohd Shafi Rather", designation: "Principal", department: "Administration", subject: "English", qualification: "M.A., M.Ed.", experience: "19 years", email: "abhamahss@gmail.com", phone: "+91-9018607163", bio: "Experienced educational leader with a vision for holistic development." },
-            { id: 2, name: "Mr.Peerzada Arshid Ahmad", designation: "Senior Lecturer", department: "Humanities", subject: "Political Science", qualification: "M.A., B.Ed.", experience: "15 years", email: "abhamahss@gmail.com", phone: "+91-8899928503", bio: "Specializes in innovative teaching methods." },
-            { id: 3, name: "Mr. Aashiq Hussain Dar", designation: "Teacher", department: "Science", subject: "Chemistry", qualification: "M.Sc., B.Ed.", experience: "06 years", email: "gmdar@ghssabhama.edu.in", phone: "+91-9419000003", bio: "Known for making chemistry fun and accessible." },
-            { id: 4, name: "Mr Reyaz Ahmad Dar", designation: "Lecturer", department: "Science", subject: "Biology", qualification: "M.Sc., B.Ed.", experience: "25 years", email: "shakeela@ghssabhama.edu.in", phone: "+91-9419000004", bio: "Passionate about environmental education." },
-            { id: 5, name: "Mr. Mushtaq Ahmad Wani", designation: "Teacher", department: "Science", subject: "Science", qualification: "B.Sc., B.Ed.", experience: "16 years", email: "javaid.wani@ghssabhama.edu.in", phone: "+91-9419000005", bio: "Expert in competitive exam preparation." },
-            { id: 6, name: "Mr. Tariq Ahmad Baba", designation: "Teacher", department: "Arts", subject: "Urdu", qualification: "M.A., B.Ed.", experience: "14 years", email: "fatima.jan@ghssabhama.edu.in", phone: "+91-9419000006", bio: "Literature enthusiast and language expert." },
-            { id: 7, name: "Mr. Sajad Ahmad Kumar", designation: "Lecturer", department: "Science", subject: "Physics", qualification: "M.Sc., B.Ed.", experience: "09 years", email: "rashid.rather@ghssabhama.edu.in", phone: "+91-9419000007", bio: "Promotes Urdu literature and poetry." },
-            { id: 8, name: "Mr.Mudasir Khalil", designation: "Teacher", department: "Mathematics", subject: "Maths", qualification: "M.C.A., B.Ed.", experience: "9 years", email: "sameena@ghssabhama.edu.in", phone: "+91-9419000008", bio: "Focuses on civic awareness and leadership." },
-            { id: 9, name: "Mr.Mohd Ayub Bajran", designation: "Teacher", department: "Arts", subject: "Maths", qualification: "M.A., B.Ed.", experience: "13 years", email: "fayaz.lone@ghssabhama.edu.in", phone: "+91-9419000009", bio: "Practical approach to economic concepts." },
-            { id: 10, name: "Mr. Mushtaq Ahmad Mir", designation: "Vocational Trainer", department: "Vocational", subject: "IT & ITES", qualification: "BCA, MCA, Diploma in IT", experience: "8 years", email: "mushtaq.mir@ghssabhama.edu.in", phone: "+91-9419000010", bio: "Industry-ready IT skills training." },
-            { id: 11, name: "Mr. Irfan Ahmad Rather", designation: "Vocational Trainer", department: "Vocational", subject: "Electronics & Hardware", qualification: "B.Tech (ECE), Diploma", experience: "7 years", email: "irfan.rather@ghssabhama.edu.in", phone: "+91-9419000011", bio: "Hands-on electronics and hardware expert." },
-            { id: 12, name: "Mrs. Razia Bano", designation: "Lecturer", department: "Languages", subject: "English", qualification: "M.A., B.Ed.", experience: "10 years", email: "razia.bano@ghssabhama.edu.in", phone: "+91-9419000012", bio: "Communicative English specialist." },
-            { id: 13, name: "Mr. Bashir Ahmad Dar", designation: "Physical Education", department: "Sports", subject: "Physical Education", qualification: "M.P.Ed., B.P.Ed.", experience: "16 years", email: "bashir.dar@ghssabhama.edu.in", phone: "+91-9419000013", bio: "State-level sports coach and motivator." },
-            { id: 14, name: "Mrs. Nahida Akhter", designation: "Librarian", department: "Library", subject: "Library Science", qualification: "MLISc, B.Ed.", experience: "8 years", email: "nahida@ghssabhama.edu.in", phone: "+91-9419000014", bio: "Digital library and resource management." },
-            { id: 15, name: "Mr. Abdul Hamid Bhat", designation: "Counselor", department: "Guidance", subject: "Career Counseling", qualification: "M.A. Psychology, PGDGC", experience: "10 years", email: "hamid.bhat@ghssabhama.edu.in", phone: "+91-9419000015", bio: "Student career and mental health guidance." }
+        // Teaching Faculty Data
+        const teachingStaff = [
+            { id: 1, name: "Dr. Mohd Shafi Rather", designation: "Principal", department: "Administration", role: "English", qualification: "M.A., M.Ed., Ph.D", experience: "19 years", email: "abhamahss@gmail.com", phone: "+91-9018607163", bio: "Experienced educational leader with a vision for holistic development.", type: "teaching" },
+            { id: 2, name: "Mr. Peerzada Arshid Ahmad", designation: "Senior Lecturer", department: "Humanities", role: "Political Science", qualification: "M.A., B.Ed.", experience: "15 years", email: "abhamahss@gmail.com", phone: "+91-8899928503", bio: "Specializes in innovative teaching methods.", type: "teaching" },
+            { id: 3, name: "Mr. Aashiq Hussain Dar", designation: "Teacher", department: "Science", role: "Chemistry", qualification: "M.Sc., B.Ed.", experience: "06 years", email: "gmdar@ghssabhama.edu.in", phone: "+91-9419000003", bio: "Known for making chemistry fun and accessible.", type: "teaching" },
+            { id: 4, name: "Mr. Reyaz Ahmad Dar", designation: "Lecturer", department: "Science", role: "Biology", qualification: "M.Sc., B.Ed.", experience: "25 years", email: "shakeela@ghssabhama.edu.in", phone: "+91-9419000004", bio: "Passionate about environmental education.", type: "teaching" },
+            { id: 5, name: "Mr. Mushtaq Ahmad Wani", designation: "Teacher", department: "Science", role: "Science", qualification: "B.Sc., B.Ed.", experience: "16 years", email: "javaid.wani@ghssabhama.edu.in", phone: "+91-9419000005", bio: "Expert in competitive exam preparation.", type: "teaching" },
+            { id: 6, name: "Mr. Tariq Ahmad Baba", designation: "Teacher", department: "Arts", role: "Urdu", qualification: "M.A., B.Ed.", experience: "14 years", email: "fatima.jan@ghssabhama.edu.in", phone: "+91-9419000006", bio: "Literature enthusiast and language expert.", type: "teaching" },
+            { id: 7, name: "Mr. Sajad Ahmad Kumar", designation: "Lecturer", department: "Science", role: "Physics", qualification: "M.Sc., B.Ed.", experience: "09 years", email: "rashid.rather@ghssabhama.edu.in", phone: "+91-9419000007", bio: "Promotes scientific temperament.", type: "teaching" },
+            { id: 8, name: "Mr. Mudasir Khalil", designation: "Teacher", department: "Mathematics", role: "Maths", qualification: "M.C.A., B.Ed.", experience: "9 years", email: "sameena@ghssabhama.edu.in", phone: "+91-9419000008", bio: "Focuses on conceptual clarity.", type: "teaching" },
+            { id: 9, name: "Mr. Mohd Ayub Bajran", designation: "Teacher", department: "Arts", role: "Maths", qualification: "M.A., B.Ed.", experience: "13 years", email: "fayaz.lone@ghssabhama.edu.in", phone: "+91-9419000009", bio: "Practical approach to mathematical concepts.", type: "teaching" },
+            { id: 10, name: "Mr. Mushtaq Ahmad Mir", designation: "Vocational Trainer", department: "Vocational", role: "IT & ITES", qualification: "BCA, MCA, Diploma in IT", experience: "8 years", email: "mushtaq.mir@ghssabhama.edu.in", phone: "+91-9419000010", bio: "Industry-ready IT skills training.", type: "teaching" },
+            { id: 11, name: "Mr. Irfan Ahmad Rather", designation: "Vocational Trainer", department: "Vocational", role: "Electronics & Hardware", qualification: "B.Tech (ECE), Diploma", experience: "7 years", email: "irfan.rather@ghssabhama.edu.in", phone: "+91-9419000011", bio: "Hands-on electronics and hardware expert.", type: "teaching" },
+            { id: 12, name: "Mrs. Razia Bano", designation: "Lecturer", department: "Languages", role: "English", qualification: "M.A., B.Ed.", experience: "10 years", email: "razia.bano@ghssabhama.edu.in", phone: "+91-9419000012", bio: "Communicative English specialist.", type: "teaching" },
+            { id: 13, name: "Mr. Bashir Ahmad Dar", designation: "Physical Education Teacher", department: "Sports", role: "Physical Education", qualification: "M.P.Ed., B.P.Ed.", experience: "16 years", email: "bashir.dar@ghssabhama.edu.in", phone: "+91-9419000013", bio: "State-level sports coach and motivator.", type: "teaching" },
+            { id: 14, name: "Mrs. Nahida Akhter", designation: "Librarian", department: "Library", role: "Library Science", qualification: "MLISc, B.Ed.", experience: "8 years", email: "nahida@ghssabhama.edu.in", phone: "+91-9419000014", bio: "Digital library and resource management.", type: "teaching" },
+            { id: 15, name: "Mr. Abdul Hamid Bhat", designation: "Counselor", department: "Guidance", role: "Career Counseling", qualification: "M.A. Psychology, PGDGC", experience: "10 years", email: "hamid.bhat@ghssabhama.edu.in", phone: "+91-9419000015", bio: "Student career and mental health guidance.", type: "teaching" }
         ];
 
+        // Non-Teaching Staff Data
+        const nonTeachingStaff = [
+            { id: 101, name: "Mohd Iqbal Lone", designation: "Accountant", department: "Administration", role: "Accounts & Finance", qualification: "B.Com, M.Com", experience: "12 years", email: "iqbal.lone@ghssabhama.edu.in", phone: "+91-9419000101", bio: "Handles all financial and accounting matters of the school.", type: "nonteaching" },
+            { id: 102, name: "Mohd Younis Sofi", designation: "Laboratory Bearer", department: "Support Staff", role: "Science Lab Assistant", qualification: "10th Pass, Lab Training", experience: "8 years", email: "younis.sofi@ghssabhama.edu.in", phone: "+91-9419000102", bio: "Manages science laboratory equipment and assists teachers during practicals.", type: "nonteaching" },
+            { id: 103, name: "Zaffer Hussain", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "Office Support", qualification: "12th Pass", experience: "6 years", email: "zaffer.hussain@ghssabhama.edu.in", phone: "+91-9419000103", bio: "Provides administrative and office support services.", type: "nonteaching" },
+            { id: 104, name: "Shabir Ahmad", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "Campus Maintenance", qualification: "10th Pass", experience: "5 years", email: "shabir.ahmad@ghssabhama.edu.in", phone: "+91-9419000104", bio: "Responsible for campus cleanliness and maintenance.", type: "nonteaching" },
+            { id: 105, name: "Abdullah Gorsi", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "General Duty", qualification: "10th Pass", experience: "4 years", email: "abdullah.gorsi@ghssabhama.edu.in", phone: "+91-9419000105", bio: "Assists in various school activities and events.", type: "nonteaching" },
+            { id: 106, name: "Mohd Qasim", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "Gardening & Maintenance", qualification: "8th Pass", experience: "7 years", email: "mohd.qasim@ghssabhama.edu.in", phone: "+91-9419000106", bio: "Looks after school garden and outdoor maintenance.", type: "nonteaching" },
+            { id: 107, name: "Rukhsar Ahmad", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "Student Support", qualification: "10th Pass", experience: "3 years", email: "rukhsar.ahmad@ghssabhama.edu.in", phone: "+91-9419000107", bio: "Provides support to students and staff as needed.", type: "nonteaching" },
+            { id: 108, name: "Ashiq Hussain Wagay", designation: "MTS (Multi Tasking Staff)", department: "Support Staff", role: "Security & Helpdesk", qualification: "12th Pass", experience: "5 years", email: "ashiq.wagay@ghssabhama.edu.in", phone: "+91-9419000108", bio: "Manages security and student helpdesk services.", type: "nonteaching" }
+        ];
+
+        let currentTab = "teaching";
         let currentFilter = "all";
         let currentSearch = "";
 
-        function renderTeachers() {
-            let filtered = teachers.filter(teacher => {
-                if (currentFilter !== "all" && teacher.department !== currentFilter && teacher.subject !== currentFilter) {
-                    return false;
+        function getInitialAvatar(name, department) {
+            const initials = name.split(' ').map(n => n[0]).join('');
+            return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=1e6f5c&color=fff&size=200&bold=true`;
+        }
+
+        function renderStaff() {
+            const staffData = currentTab === "teaching" ? teachingStaff : nonTeachingStaff;
+            
+            let filtered = staffData.filter(staff => {
+                if (currentFilter !== "all") {
+                    const filterValue = currentFilter.toLowerCase();
+                    const matchesDepartment = staff.department?.toLowerCase().includes(filterValue);
+                    const matchesRole = staff.role?.toLowerCase().includes(filterValue);
+                    if (!matchesDepartment && !matchesRole) return false;
                 }
                 if (currentSearch) {
                     const searchTerm = currentSearch.toLowerCase();
-                    return teacher.name.toLowerCase().includes(searchTerm) ||
-                        teacher.subject.toLowerCase().includes(searchTerm) ||
-                        teacher.qualification.toLowerCase().includes(searchTerm) ||
-                        teacher.department.toLowerCase().includes(searchTerm);
+                    return staff.name.toLowerCase().includes(searchTerm) ||
+                        staff.role.toLowerCase().includes(searchTerm) ||
+                        staff.designation.toLowerCase().includes(searchTerm) ||
+                        (staff.qualification && staff.qualification.toLowerCase().includes(searchTerm));
                 }
                 return true;
             });
 
             document.getElementById('teacherCount').innerText = filtered.length;
-            const grid = document.getElementById('teacherGrid');
+            const gridId = currentTab === "teaching" ? "teachingGrid" : "nonteachingGrid";
+            const grid = document.getElementById(gridId);
 
             if (filtered.length === 0) {
-                grid.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 3rem; opacity: 0.3;"></i><p>No teachers found matching your search.</p></div>';
+                grid.innerHTML = '<div class="no-results"><i class="fas fa-search" style="font-size: 3rem; opacity: 0.3;"></i><p>No staff members found matching your search.</p></div>';
                 return;
             }
 
-            grid.innerHTML = filtered.map(teacher => `
-                <div class="teacher-card" onclick="showTeacherDetails(${teacher.id})">
-                    <div class="teacher-img">
-                        <i class="fas fa-user-graduate"></i>
-                        <span class="subject-badge">${teacher.subject}</span>
+            grid.innerHTML = filtered.map(staff => `
+                <div class="staff-card" onclick="showStaffDetails(${staff.id}, '${currentTab}')">
+                    <div class="staff-img">
+                        <img src="${getInitialAvatar(staff.name, staff.department)}" alt="${staff.name}" style="width: 100%; height: 100%; object-fit: cover;">
+                        <span class="role-badge">${staff.role}</span>
                     </div>
-                    <div class="teacher-info">
-                        <h3 class="teacher-name">${teacher.name}</h3>
-                        <span class="teacher-dept">${teacher.department} | ${teacher.designation}</span>
-                        <div class="teacher-qualification">
-                            <i class="fas fa-graduation-cap"></i> ${teacher.qualification}
-                        </div>
-                        <div class="teacher-details">
-                            <p><i class="fas fa-book-open"></i> <strong>Subject:</strong> ${teacher.subject}</p>
-                            <p><i class="fas fa-clock"></i> <strong>Experience:</strong> ${teacher.experience}</p>
+                    <div class="staff-info">
+                        <h3 class="staff-name">${staff.name}</h3>
+                        <span class="staff-role">${staff.designation}</span>
+                        <div class="staff-details">
+                            <p><i class="fas fa-building"></i> <strong>Department:</strong> ${staff.department}</p>
+                            ${staff.qualification ? `<p><i class="fas fa-graduation-cap"></i> <strong>Qualification:</strong> ${staff.qualification}</p>` : ''}
+                            ${staff.experience ? `<p><i class="fas fa-clock"></i> <strong>Experience:</strong> ${staff.experience}</p>` : ''}
                         </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        function showTeacherDetails(id) {
-            const teacher = teachers.find(t => t.id === id);
-            if (!teacher) return;
+        function showStaffDetails(id, type) {
+            const staffData = type === "teaching" ? teachingStaff : nonTeachingStaff;
+            const staff = staffData.find(s => s.id === id);
+            if (!staff) return;
 
             const modalBody = document.getElementById('modalBody');
             modalBody.innerHTML = `
                 <div class="modal-detail-row">
                     <div class="modal-label">Full Name:</div>
-                    <div class="modal-value">${teacher.name}</div>
+                    <div class="modal-value">${staff.name}</div>
                 </div>
                 <div class="modal-detail-row">
                     <div class="modal-label">Designation:</div>
-                    <div class="modal-value">${teacher.designation}</div>
+                    <div class="modal-value">${staff.designation}</div>
                 </div>
                 <div class="modal-detail-row">
                     <div class="modal-label">Department:</div>
-                    <div class="modal-value">${teacher.department}</div>
+                    <div class="modal-value">${staff.department}</div>
                 </div>
                 <div class="modal-detail-row">
-                    <div class="modal-label">Subject:</div>
-                    <div class="modal-value">${teacher.subject}</div>
+                    <div class="modal-label">Role/Subject:</div>
+                    <div class="modal-value">${staff.role}</div>
                 </div>
-                <div class="modal-detail-row">
+                ${staff.qualification ? `<div class="modal-detail-row">
                     <div class="modal-label">Qualification:</div>
-                    <div class="modal-value">${teacher.qualification}</div>
-                </div>
-                <div class="modal-detail-row">
+                    <div class="modal-value">${staff.qualification}</div>
+                </div>` : ''}
+                ${staff.experience ? `<div class="modal-detail-row">
                     <div class="modal-label">Experience:</div>
-                    <div class="modal-value">${teacher.experience}</div>
-                </div>
+                    <div class="modal-value">${staff.experience}</div>
+                </div>` : ''}
                 <div class="modal-detail-row">
                     <div class="modal-label">Email:</div>
-                    <div class="modal-value">${teacher.email}</div>
+                    <div class="modal-value">${staff.email}</div>
                 </div>
                 <div class="modal-detail-row">
                     <div class="modal-label">Contact:</div>
-                    <div class="modal-value">${teacher.phone}</div>
+                    <div class="modal-value">${staff.phone}</div>
                 </div>
                 <div class="modal-detail-row">
                     <div class="modal-label">Bio:</div>
-                    <div class="modal-value">${teacher.bio}</div>
+                    <div class="modal-value">${staff.bio}</div>
                 </div>
             `;
-            document.getElementById('teacherModal').style.display = 'flex';
+            document.getElementById('staffModal').style.display = 'flex';
         }
 
         function closeModal() {
-            document.getElementById('teacherModal').style.display = 'none';
+            document.getElementById('staffModal').style.display = 'none';
         }
 
-        // Event Listeners
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            currentSearch = e.target.value;
-            renderTeachers();
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentTab = btn.getAttribute('data-tab');
+                
+                document.querySelectorAll('.staff-section').forEach(section => {
+                    section.classList.remove('active-section');
+                });
+                document.getElementById(`${currentTab}Section`).classList.add('active-section');
+                
+                // Reset filters when switching tabs
+                currentFilter = "all";
+                currentSearch = "";
+                document.getElementById('searchInput').value = "";
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+                
+                renderStaff();
+            });
         });
 
+        // Search Event
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderStaff();
+        });
+
+        // Filter Events
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 currentFilter = btn.getAttribute('data-filter');
-                renderTeachers();
+                renderStaff();
             });
         });
 
         // Close modal on outside click
         window.onclick = (e) => {
-            const modal = document.getElementById('teacherModal');
+            const modal = document.getElementById('staffModal');
             if (e.target === modal) closeModal();
         };
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
-        menuToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => navMenu.classList.toggle('show'));
+        }
 
         // Initial render
-        renderTeachers();
+        renderStaff();
     </script>
 </body>
 
